@@ -4,6 +4,11 @@ describe User do
   before do
     @user = Factory.build(:user)
   end
+  
+  context "associations" do
+    it { should have_many(:discussions) }
+    it { should have_many(:messages) }
+  end
 
   describe "validations" do
 
