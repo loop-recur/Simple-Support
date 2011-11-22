@@ -1,0 +1,15 @@
+.bundle
+db/*.sqlite3
+*.log
+tmp/**/*
+config/database.yml
+config/logins.yml
+config/setup_load_paths.rb
+.DS_Store
+thumbs.db
+public/attachments/*
+vendor/our_files/*
+public/files/*
+public/streams
+tmp/restart.txt
+.rvmrc*
