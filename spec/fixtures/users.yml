@@ -3,3 +3,4 @@ one:
   name: Joe Blow
   email: joe@example.com
   encrypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  account_id: 1

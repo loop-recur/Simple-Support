@@ -59,3 +59,14 @@ SimpleSupport::Application.configure do
   config.active_support.deprecation = :notify
   config.action_mailer.default_url_options = { :host => DOMAIN }
 end
+
+PAPERCLIP_DEFAULTS = {
+  :storage => :s3, 
+  :s3_credentials => { 
+    :bucket            => ENV['S3_BUCKET'] || "dev.simplesupport.com", 
+    :access_key_id     => ENV['S3_KEY']    || "key", 
+    :secret_access_key => ENV['S3_SECRET'] || "secret" },
+  :default_url => ":class/:style.png",
+  :default_style => :default,
+  :path => ":class/:id_partition/:style/:basename.:extension",
+}

@@ -10,6 +10,11 @@ describe Discussion do
     it { should have_many(:messages) }
   end
   
+  context "validations" do
+    it { should validate_presence_of :account_id }
+    it { should validate_presence_of :user_id }
+  end
+  
   context "an instance" do
     
     it "has an initial message" do

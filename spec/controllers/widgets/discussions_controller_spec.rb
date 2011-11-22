@@ -15,7 +15,7 @@ describe DiscussionsController do
         Discussion.any_instance.stubs(:valid?).returns(true)
         user_attrs = {:name => "Bob", :email => "bob@hotmail.com"}
         discussion_attrs = {:messages_attributes => [{:body => "yo man!"}]}
-        @doPost = lambda {post :create, :discussion => discussion_attrs, :user => user_attrs, :deploy_url => "/toast"}
+        @doPost = lambda {post :create, :discussion => discussion_attrs, :user => user_attrs, :account_id => 1, :deploy_url => "/toast"}
         @doPost.call
       end
     
