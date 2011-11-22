@@ -2,12 +2,13 @@ module IDMask
 extend self
 
   def unmask(masked_id)
-    no_new_lines = masked_id.gsub("SLASH", "/").gsub("NEWLINE", '\\n')
-    EzCrypto::Key.with_password("bubble", "gum").decrypt64(no_new_lines).split(",")
+    sanitized = masked_id.gsub("SLH", "/").gsub("NWLN", "\n")
+    JSON.parse(EzCrypto::Key.with_password("bubble", "gum").decrypt64(sanitized)).symbolize_keys!
   end
   
   def mask(*args)
-    EzCrypto::Key.with_password("bubble", "gum").encrypt64(args.join(',')).gsub("/", "SLASH").gsub(/\n/, "NEWLINE")
+    json = args.map(&:to_json).join(",")
+    EzCrypto::Key.with_password("bubble", "gum").encrypt64(json).gsub("/", "SLH").gsub("\n", "NWLN");
   end
   
 end

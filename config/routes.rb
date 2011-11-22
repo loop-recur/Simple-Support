@@ -6,7 +6,11 @@ SimpleSupport::Application.routes.draw do
     resources :discussions
   end
   
-  resources :discussions
+
+  scope :module => :widgets do
+    resources :discussions
+    match "router/:masked_id" => "application#route", :as => "widget_router"
+  end  
   
-  root :to => "discussions#index"
+  root :to => "admin/discussions#index"
 end

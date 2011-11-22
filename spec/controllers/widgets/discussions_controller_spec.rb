@@ -1,5 +1,7 @@
 require 'spec_helper'
-  
+
+module Widgets
+    
 describe DiscussionsController do
   fixtures :discussions, :users
   
@@ -56,4 +58,6 @@ describe DiscussionsController do
     it { should respond_with :success }
     it { should render_template :index }    
   end
+end
+
 end

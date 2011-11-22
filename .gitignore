@@ -3,6 +3,7 @@ db/*.sqlite3
 *.log
 tmp/**/*
 config/database.yml
+config/domains.yml
 config/logins.yml
 config/setup_load_paths.rb
 .DS_Store

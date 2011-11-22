@@ -7,7 +7,7 @@
 	<% for discussion in @discussions %>
 		<tr>
 			<td><%= link_to discussion.title, [:admin, discussion] %></td>
-			<td><%#= discussion.user.email %></td>
+			<td><%= discussion.user.email %></td>
 			<td><%= link_to "[X]", [:admin, discussion], :method => :delete %></td>
 		</tr>
 	<% end %>

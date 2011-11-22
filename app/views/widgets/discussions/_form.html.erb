@@ -1,4 +1,4 @@
-<%= form_for @discussion do |f| %>
+<%= form_for @discussion, :url => discussions_url do |f| %>
 <%= fields_for :user do |u| %>
 <%= f.fields_for "[messages_attributes][]", Message.new do |m| %>
 
@@ -15,7 +15,7 @@
 		<%= m.text_area :body %>
 	</p>
 	
-	<%= hidden_field_tag :deploy_url, :value => "http://looprecur.com" %>
+	<%= hidden_field_tag :deploy_url, "http://looprecur.com" %>
 	<%= f.submit %>
 	
 <% end %>

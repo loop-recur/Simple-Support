@@ -1,3 +1,5 @@
+module Widgets
+  
 class DiscussionsController < ApplicationController
   
   def create
@@ -16,5 +18,7 @@ class DiscussionsController < ApplicationController
 
   def index
     @discussion = Discussion.new
-  end  
+  end
+end
+
 end
