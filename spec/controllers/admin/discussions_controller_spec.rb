@@ -3,13 +3,13 @@ require 'spec_helper'
 module Admin
   
 describe DiscussionsController do
-  fixtures :discussions, :messages, :users
+  fixtures :accounts, :discussions, :messages, :users
   render_views 
   
   describe "should require authentication" do
     it "redirects if not authenticated" do
-      get :index, :id => 1
-      response.should redirect_to(new_user_session_path)
+      get :index
+      response.should redirect_to(new_admin_session_path)
     end
   end
   
@@ -28,6 +28,12 @@ describe DiscussionsController do
       it { should respond_with :success }
       it { should assign_to :discussions }
       it { should render_template :index }
+      
+      it "only gets discussions with the current account's id" do
+        discussion = Factory(:discussion, :account_id => 123)
+        get :index
+        assigns(:discussions).should == [@discussion]
+      end
     end
 
     describe "GET /show" do

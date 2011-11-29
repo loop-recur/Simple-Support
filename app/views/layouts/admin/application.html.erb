@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SimpleSupport</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<h1>Admin</h1>
+
+<div class="right">logged in as <%= current_admin.email %> | <%= link_to "logout", destroy_admin_session_path %></div>
+<nav>
+	<ul>
+		<li><%= link_to "Queues", "#" %></li>
+		<li><%= link_to "Knowledge Base", "#" %></li>
+		<li><%= link_to "Agents", admin_agents_path %></li>
+		<li><%= link_to "Account", "#" %></li>
+	</ul>
+</nav>
+
+<%= yield %>
+
+</body>
+</html>

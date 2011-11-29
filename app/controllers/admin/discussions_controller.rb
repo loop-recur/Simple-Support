@@ -3,15 +3,15 @@ module Admin
 class DiscussionsController < ApplicationController
   
   def index
-    @discussions = Discussion.all
+    @discussions = current_account.discussions.paginate(:page => params[:page], :per_page => 15)
   end
   
   def show
-    @discussion = Discussion.find(params[:id])
+    @discussion = current_account.discussions.find(params[:id])
   end
   
   def destroy
-    Discussion.find(params[:id]).destroy
+    current_account.discussions.find(params[:id]).destroy
     redirect_to discussions_path
   end
   

@@ -1,0 +1,20 @@
+<h2><%= link_to "Agents", admin_agents_path %> | <%= link_to "Users", admin_ticket_holders_path %></h2>
+<%= link_to "New Agent", new_admin_agent_path %>
+
+<table>
+	<tr>
+		<td>Name</td>
+		<td>Email</td>
+		<td>&nbsp;</td>
+	</tr>
+	<% for admin in @admins %>
+		<tr>
+			<td><%= link_to(image_tag(admin.avatar.url), edit_admin_agent_path(admin)) %></td>
+			<td><%= link_to admin.name, edit_admin_agent_path(admin) %></td>
+			<td><%= admin.email %></td>
+			<td><%= link_to "[X]", admin_agent_path(admin), :method => :delete %></td>
+		</tr>
+	<% end %>
+</table>
+
+<%= will_paginate @admins %>

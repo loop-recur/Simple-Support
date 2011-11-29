@@ -1,0 +1,4 @@
+<h2><%= @ticket_holder.name %></h2>
+<%= form_for @ticket_holder, :url => admin_ticket_holder_path(@ticket_holder) do |f| %>
+	<%= render :partial => f %>
+<% end %>

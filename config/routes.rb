@@ -1,9 +1,12 @@
 SimpleSupport::Application.routes.draw do
-  devise_for :users
+  devise_for :ticket_holders, :class_name => "User::TicketHolder"
+  devise_for :admins, :class_name => "User::Admin"
 
   namespace :admin do
     root :to => "discussions#index"
     resources :discussions
+    resources :agents
+    resources :ticket_holders
   end
   
 
@@ -12,5 +15,5 @@ SimpleSupport::Application.routes.draw do
     match "router/:masked_id" => "application#route", :as => "widget_router"
   end  
   
-  root :to => "admin/discussions#index"
+  root :to => "widgets/discussions#index"
 end

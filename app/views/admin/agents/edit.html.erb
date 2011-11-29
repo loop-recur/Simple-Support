@@ -1,0 +1,4 @@
+<h2><%= @admin.name %></h2>
+<%= form_for @admin, :url => admin_agent_path(@admin) do |f| %>
+	<%= render :partial => f %>
+<% end %>

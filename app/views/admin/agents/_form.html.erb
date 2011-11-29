@@ -1,0 +1,27 @@
+<p>
+	<%= form.label :name %>
+	<%= form.text_field :name %>
+</p>
+
+<p>
+	<%= form.label :email %>
+	<%= form.text_field :email %>
+</p>
+
+<p>
+	<%= form.label :password %>
+	<%= form.text_field :password %>
+</p>
+
+<p>
+	<%= form.label :password_confirmation %>
+	<%= form.text_field :password_confirmation %>
+</p>
+
+<p>
+	<%= image_tag(form.object.avatar.url) %>
+	<%= form.label :avatar %>
+	<%= form.file_field :avatar %>
+</p>
+
+<%= form.submit %>

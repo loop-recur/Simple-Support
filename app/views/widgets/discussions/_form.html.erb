@@ -1,4 +1,4 @@
-<%= form_for @discussion, :url => discussions_url do |f| %>
+<%= form_for @discussion, :url => discussions_url(:account_id => params[:account_id]) do |f| %>
 <%= fields_for :user do |u| %>
 <%= f.fields_for "[messages_attributes][]", Message.new do |m| %>
 

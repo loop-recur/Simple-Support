@@ -1,0 +1,19 @@
+<h2><%= link_to "Agents", admin_agents_path %> | <%= link_to "Users", admin_ticket_holders_path %></h2>
+<%= link_to "New User", new_admin_ticket_holder_path %>
+
+<table>
+	<tr>
+		<td>Name</td>
+		<td>Email</td>
+		<td>&nbsp;</td>
+	</tr>
+	<% for ticket_holder in @ticket_holders %>
+		<tr>
+			<td><%= link_to ticket_holder.name, edit_admin_ticket_holder_path(ticket_holder) %></td>
+			<td><%= ticket_holder.email %></td>
+			<td><%= link_to "[X]", admin_ticket_holder_path(ticket_holder), :method => :delete %></td>
+		</tr>
+	<% end %>
+</table>
+
+<%= will_paginate @ticket_holders %>
