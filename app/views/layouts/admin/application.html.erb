@@ -16,7 +16,7 @@
 <div class="right">logged in as <%= current_admin.email %> | <%= link_to "logout", destroy_admin_session_path %></div>
 <nav>
 	<ul>
-		<li><%= link_to "Queues", "#" %></li>
+		<li><%= link_to "Queues", admin_discussions_path %></li>
 		<li><%= link_to "Knowledge Base", "#" %></li>
 		<li><%= link_to "Agents", admin_agents_path %></li>
 		<li><%= link_to "Account", "#" %></li>

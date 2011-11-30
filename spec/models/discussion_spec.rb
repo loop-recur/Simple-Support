@@ -27,6 +27,16 @@ describe Discussion do
       @discussion.initial_message.body = "A really long body about how mad this user is in regard to bugs"
       @discussion.title.should == "A really long body about ho..."
     end
+    
+    it "has a first received time" do
+      first_time = Time.parse('10/10/10 10:00pm')
+      last_time = Time.parse('11/11/11 11:00pm')
+      first_message = Factory.build(:message, :created_at => first_time)
+      last_message = Factory.build(:message, :created_at => last_time)
+      @discussion.messages = [first_message, last_message]
+      @discussion.times[:first_received].should == first_time
+      @discussion.times[:last_replied].should == last_time
+    end
   end
   
 end

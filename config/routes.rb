@@ -4,7 +4,9 @@ SimpleSupport::Application.routes.draw do
 
   namespace :admin do
     root :to => "discussions#index"
-    resources :discussions
+    resources :discussions do
+      resources :messages
+    end
     resources :agents
     resources :ticket_holders
   end

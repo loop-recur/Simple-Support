@@ -8,7 +8,15 @@ class Discussion < ActiveRecord::Base
     @initial_message ||= messages.first
   end
   
+  def latest_message
+    @latest_message ||= messages.last
+  end
+  
   def title
     initial_message.body.truncate(30)
+  end
+  
+  def times
+    @times ||= {:first_received => initial_message.created_at, :last_replied => latest_message.created_at}
   end
 end

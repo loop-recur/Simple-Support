@@ -38,7 +38,7 @@ describe DiscussionsController do
 
     describe "GET /show" do
       before do
-        get :show, :id => 1
+        get :show, :id => @discussion.id
       end
 
       it { should respond_with :success }

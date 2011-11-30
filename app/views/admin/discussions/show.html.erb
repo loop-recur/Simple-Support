@@ -1,1 +1,12 @@
-<h2><%= @discussion.title %></h2>
+<h2><%= @discussion.title %> (<%= @discussion.user.email %>)</h2>
+
+<p>First Received: <%= @discussion.times[:first_received].to_s(:with_time) %></p>
+<p>Last Replied: <%= @discussion.times[:last_replied].to_s(:with_time) %></p>
+
+<%= form_for [:admin, @discussion, Message.new] do |f| %>
+	<%= render :partial => "admin/messages/form", :locals => {:form => f} %>
+<% end %>
+
+<ul>
+	<%= render :partial => "admin/messages/message", :collection => @discussion.messages %>
+</ul>

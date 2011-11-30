@@ -1,7 +1,7 @@
 Factory.define :discussion do |f|
   f.account_id 1
   f.user_id 1
-  f.messages { [Factory.build(:message)] }
+  f.messages { [Factory.build(:message, :created_at => Time.now)] }
 end
 
 Factory.define :message do |f|

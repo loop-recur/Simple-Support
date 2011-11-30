@@ -1,0 +1,6 @@
+<li>
+	<p><%= image_tag(message.user.avatar.url) %></p>
+	<p><%= message.body %></p>
+	<p>by <%= message.user.email %></p>
+	<p>on <%= message.created_at.to_s(:with_time) %></p>
+</li>

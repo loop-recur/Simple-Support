@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
   has_many :messages
   has_many :discussions
   
+  def avatar
+    User::FakeAvatar
+  end
+  
 protected
 
   def password_required?
