@@ -67,6 +67,16 @@ describe AgentsController do
       end
     end
     
+    describe "GET /new" do
+       before do
+         get :new
+       end
+
+       it { should respond_with :success }
+       it { should assign_to :admin }
+       it { should render_template :new }
+     end
+    
     describe "GET /edit" do
       before do
         get :edit, :id => 1

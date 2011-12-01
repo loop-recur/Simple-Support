@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111128223002) do
+ActiveRecord::Schema.define(:version => 20111130233948) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(:version => 20111128223002) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "account_id"
+    t.boolean  "important"
+    t.boolean  "resolved"
   end
 
   create_table "messages", :force => true do |t|

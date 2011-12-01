@@ -13,6 +13,12 @@ describe Discussion do
   context "validations" do
     it { should validate_presence_of :account_id }
     it { should validate_presence_of :user_id }
+    
+    it "won't save unless it has 1 message" do
+      @discussion.messages = []
+      @discussion.valid?.should be_false
+      @discussion.errors.full_messages.should include("You must include a message")
+    end
   end
   
   context "an instance" do

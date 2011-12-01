@@ -3,9 +3,14 @@
 <p>First Received: <%= @discussion.times[:first_received].to_s(:with_time) %></p>
 <p>Last Replied: <%= @discussion.times[:last_replied].to_s(:with_time) %></p>
 
+<%= toggle_action("Close", "Open", @discussion, :resolved) %>
+<%= toggle_action("Important", "Not Important", @discussion, :important) %>
+<%= button_to("Delete", [:admin, @discussion], :method => :delete) %>
+
 <%= form_for [:admin, @discussion, Message.new] do |f| %>
 	<%= render :partial => "admin/messages/form", :locals => {:form => f} %>
 <% end %>
+
 
 <ul>
 	<%= render :partial => "admin/messages/message", :collection => @discussion.messages %>

@@ -30,7 +30,7 @@ describe TicketHoldersController do
 
         it { should redirect_to(admin_ticket_holders_path) }
 
-        it "creates an admin" do
+        it "creates a ticket_holder" do
           @doPost.should change(User::TicketHolder, :count).by(1)
         end
       end
@@ -44,7 +44,7 @@ describe TicketHoldersController do
 
          it { should render_template("admin/ticket_holders/new") }
          
-         it "doesn't create an admin" do
+         it "doesn't create a ticket_holder" do
            @doPost.should change(User::TicketHolder, :count).by(0)
          end
       end
@@ -65,6 +65,16 @@ describe TicketHoldersController do
         assigns(:ticket_holders).should_not include(ticket_holder)
         assigns(:ticket_holders).should include(@ticket_holder)
       end
+    end
+    
+    describe "GET /new" do
+      before do
+        get :new
+      end
+
+      it { should respond_with :success }
+      it { should assign_to :ticket_holder }
+      it { should render_template :new }
     end
     
     describe "GET /edit" do

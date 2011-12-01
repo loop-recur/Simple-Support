@@ -1,3 +1,5 @@
+<%= link_to "New Discussion", new_admin_discussion_path %>
+
 <table>
 	<tr>
 		<td>Message</td>
@@ -7,8 +9,12 @@
 	<% for discussion in @discussions %>
 		<tr>
 			<td><%= link_to discussion.title, [:admin, discussion] %></td>
-			<td><%= discussion.user.email %></td>
-			<td><%= link_to "[X]", [:admin, discussion], :method => :delete %></td>
+			<td><%= link_to discussion.user.email, edit_admin_ticket_holder_path(discussion.user) %></td>
+			<td>
+				<%= toggle_action("Close", "Open", discussion, :resolved) %>
+				<%= toggle_action("Important", "Not Important", discussion, :important) %>
+				<%= button_to("Delete", [:admin, discussion], :method => :delete) %>
+			</td>
 		</tr>
 	<% end %>
 </table>
