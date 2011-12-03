@@ -77,7 +77,7 @@ describe DiscussionsController do
     
     describe "GET /index" do
       before do
-        @pending_discussion = discussions(:two)
+        @responded_discussion = discussions(:two)
         @resolved_discussion = discussions(:three)
         get :index
       end
@@ -86,10 +86,10 @@ describe DiscussionsController do
       it { should assign_to :discussions }
       it { should render_template :index }
       
-      it "only gets open discussions with the current account's id" do
+      it "only gets new discussions with the current account's id" do
         discussion = Factory(:discussion, :account_id => 123)
         get :index
-        assigns(:discussions).should == [@discussion, @pending_discussion]
+        assigns(:discussions).should == [@discussion]
       end
       
       context "a queue" do
@@ -103,36 +103,36 @@ describe DiscussionsController do
           assigns(:discussions).should == [@discussion]
         end
         
-        it "gets all discussions when the queue is zero" do
+        it "gets all new discussions when the queue is zero" do
           get :index, :queue => {:id => 0}
-          assigns(:discussions).should == [@discussion, @pending_discussion, @other_discussion]
+          assigns(:discussions).should == [@discussion, @other_discussion]
         end
         
         context "and a status" do
           it "only gets new discussions" do
-            get :index, :status => :new
-            assigns(:discussions).should == [@discussion]
+            get :index, :status => "new"
+            assigns(:discussions).should == [@discussion, @other_discussion]
           end
           
           it "only gets important discussions" do
-            get :index, :status => :important
+            get :index, :status => "important"
             assigns(:discussions).should == [@other_discussion]
           end
           
           it "only gets closed discussions" do
-            get :index, :status => :closed
+            get :index, :status => "closed"
             assigns(:discussions).should == [@resolved_discussion]
           end
           
           it "only gets closed in a certain bucket" do
             @discussion.update_attribute(:resolved, true)
-            get :index, :queue => {:id => 1}, :status => :closed
+            get :index, :queue => {:id => 1}, :status => "closed"
             assigns(:discussions).should == [@discussion]
           end
           
           it "only gets pending discussions" do
             get :index, :status => :pending
-            assigns(:discussions).should == [@other_discussion]
+            assigns(:discussions).should == [@responded_discussion]
           end
         end
       end

@@ -1,9 +1,10 @@
 module Admin
   
 class DiscussionsController < ApplicationController
+  before_filter :default_status, :only => :index
   
   def index
-    discussions = DiscussionFinder.new(params, current_account).discussions
+    discussions = Discussion::Finder.new(current_account, params).discussions
     @discussions = discussions.paginate(:page => params[:page], :per_page => 15)
   end
   
@@ -35,6 +36,13 @@ class DiscussionsController < ApplicationController
     current_account.discussions.find(params[:id]).destroy
     redirect_to admin_discussions_path
   end
+  
+private
+  
+  def default_status
+    params[:status] ||= "new"
+  end
+  
 end
 
 end
