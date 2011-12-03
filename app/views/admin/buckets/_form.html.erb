@@ -1,0 +1,16 @@
+<p>
+	<%= form.label :name %>
+	<%= form.text_field :name %>
+</p>
+
+<%= hidden_field_tag "bucket[admin_ids][]", nil %>
+<ul>
+	<% for admin in current_account.admins %>
+		<li>
+			<%= check_box_tag "bucket[admin_ids][]", admin.id, (@bucket.new_record? || @bucket.admin_ids.include?(admin.id))  %>
+			<%= admin.name %>
+		</li>
+	<% end %>
+</ul>
+
+<%= form.submit %>

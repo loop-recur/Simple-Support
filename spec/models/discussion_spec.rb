@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Discussion do
+  fixtures :discussions
+  
   before do
     @discussion = Factory.build(:discussion)
   end
@@ -21,7 +23,38 @@ describe Discussion do
     end
   end
   
-  context "an instance" do
+  describe "finds" do
+    before do
+      @unresponded_disussion = discussions(:one)
+      @pending_disussion = discussions(:two)
+      @resolved_disussion = discussions(:three)
+    end
+    
+    it "returns only unresolved discussions" do
+      Discussion.unresolved.should == [@unresponded_disussion, @pending_disussion]
+    end
+    
+    it "returns only resolved discussions" do
+      Discussion.resolved.should == [@resolved_disussion]
+    end
+    
+    it "returns only unresponded discussions" do
+      Discussion.unresponded.should == [@unresponded_disussion]
+    end
+    
+    it "returns only pending discussions" do
+      Discussion.responded.should == [@pending_disussion]
+    end
+    
+    it "returns only open important discussions" do
+      important_discussion = Factory(:discussion, :important => true)
+      resolved_important_discussion = Factory(:discussion, :important => true, :resolved => true)
+      Discussion.important.should == [important_discussion]
+    end
+    
+  end
+  
+  describe "instance behavior" do
     
     it "has an initial message" do
       messages = [Factory.build(:message), Factory.build(:message)]

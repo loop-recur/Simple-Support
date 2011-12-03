@@ -1,3 +1,8 @@
+Factory.define :bucket do |f|
+  f.name "MyString"
+  f.account_id 1
+end
+
 Factory.define :discussion do |f|
   f.account_id 1
   f.user_id 1

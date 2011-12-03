@@ -3,7 +3,8 @@ module Admin
 class DiscussionsController < ApplicationController
   
   def index
-    @discussions = current_account.discussions.paginate(:page => params[:page], :per_page => 15)
+    discussions = DiscussionFinder.new(params, current_account).discussions
+    @discussions = discussions.paginate(:page => params[:page], :per_page => 15)
   end
   
   def create
@@ -34,7 +35,6 @@ class DiscussionsController < ApplicationController
     current_account.discussions.find(params[:id]).destroy
     redirect_to admin_discussions_path
   end
-  
 end
 
 end

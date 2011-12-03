@@ -10,6 +10,7 @@ protected
   def current_account
     @current_account ||= current_admin.account
   end
+  
 end
 
 end

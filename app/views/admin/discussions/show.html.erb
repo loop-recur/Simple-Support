@@ -7,10 +7,14 @@
 <%= toggle_action("Important", "Not Important", @discussion, :important) %>
 <%= button_to("Delete", [:admin, @discussion], :method => :delete) %>
 
+<%= form_for [:admin, @discussion] do |f| %>
+	<%= f.select :bucket_id, current_account.buckets.map{ |b| [b.name, b.id] }.unshift(["All", nil]) %>
+	<%= f.submit "Add to queue" %>
+<% end %>
+
 <%= form_for [:admin, @discussion, Message.new] do |f| %>
 	<%= render :partial => "admin/messages/form", :locals => {:form => f} %>
 <% end %>
-
 
 <ul>
 	<%= render :partial => "admin/messages/message", :collection => @discussion.messages %>

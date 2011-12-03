@@ -10,9 +10,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111130233948) do
+ActiveRecord::Schema.define(:version => 20111201014136) do
 
   create_table "accounts", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "buckets", :force => true do |t|
+    t.string   "name"
+    t.integer  "account_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "buckets_users", :force => true do |t|
+    t.integer  "bucket_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -25,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20111130233948) do
     t.integer  "account_id"
     t.boolean  "important"
     t.boolean  "resolved"
+    t.integer  "bucket_id"
   end
 
   create_table "messages", :force => true do |t|

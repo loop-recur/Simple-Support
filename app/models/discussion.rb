@@ -4,6 +4,17 @@ class Discussion < ActiveRecord::Base
   accepts_nested_attributes_for :messages
   validates :user_id, :account_id, :presence => true
   validate :at_least_one_message
+  scope :resolved, lambda { where(['resolved = ?', true]) }
+  scope :unresolved, lambda { where(['resolved = ? or resolved IS NULL', false]) }
+  scope :important, lambda { unresolved.where(['important = ?', true]) }
+
+  def self.unresponded
+    unresolved.select{ |d| d.latest_message.user_id == d.user_id }
+  end
+  
+  def self.responded
+    unresolved.select{ |d| d.latest_message.user_id != d.user_id }
+  end
   
   def initial_message
     @initial_message ||= messages.first

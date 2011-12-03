@@ -1,4 +1,12 @@
 <%= link_to "New Discussion", new_admin_discussion_path %>
+<%= link_to "New Queue", new_admin_bucket_path %>
+
+<ul>
+	<li><%= link_to "1 New", params.merge(:status => :new) %></li>
+	<li><%= link_to "1 Pending", params.merge(:status => :pending) %></li>
+	<li><%= link_to "1 Important", params.merge(:status => :important) %></li>
+	<li><%= link_to "1 Closed", params.merge(:status => :closed) %></li>
+</ul>
 
 <table>
 	<tr>
