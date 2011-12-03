@@ -12,6 +12,7 @@ gem 'json'
 gem 'devise', "1.5.0"
 gem 'omniauth', '1.0.0'
 gem 'ezcrypto', '0.7.2'
+gem "aws-s3"
 
 # Gems used only for assets and not required
 # in production environments by default.

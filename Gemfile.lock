@@ -33,6 +33,10 @@ GEM
     arel (2.2.1)
     autotest-rails (4.1.1)
       ZenTest (= 4.5)
+    aws-s3 (0.6.2)
+      builder
+      mime-types
+      xml-simple
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
     cocaine (0.2.0)
@@ -154,12 +158,14 @@ GEM
     warden (1.1.0)
       rack (>= 1.0)
     will_paginate (3.0.2)
+    xml-simple (1.0.12)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   autotest-rails (= 4.1.1)
+  aws-s3
   coffee-rails (~> 3.1.1)
   devise (= 1.5.0)
   ezcrypto (= 0.7.2)
