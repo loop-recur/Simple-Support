@@ -36,7 +36,7 @@ describe Finder do
       end
       
       it "returns all discussions from a bucket" do
-        Finder.new(@account, :queue => {:id => @bucket.id}).discussions.should == [@unresponded_discussion]
+        Finder.new(@account, :queue => {:id => @bucket.id}, :status => "new").discussions.should == [@unresponded_discussion]
       end
       
       it "returns all discussions from a bucket with important status" do

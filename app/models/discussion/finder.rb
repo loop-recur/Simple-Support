@@ -14,16 +14,12 @@ class Finder
   end
   
   def discussions
-    @discussions = get_bucket? ? Bucket.find(queue_id).discussions.unresolved : @account.discussions.unresolved
-    @discussions = get_status? ? @discussions.send(status) : @discussions
+    @discussions = get_bucket? ? Bucket.find(queue_id).discussions : @account.discussions
+    @discussions.send(status)
   end
   
 private
   
-  def get_status?
-    @params[:status]
-  end
-
   def get_bucket?
     !queue_id.zero?
   end
