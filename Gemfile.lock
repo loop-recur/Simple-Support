@@ -86,7 +86,7 @@ GEM
     mocha (0.10.0)
       metaclass (~> 0.0.1)
     multi_json (1.0.3)
-    mysql (2.8.1)
+    mysql2 (0.3.7)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
@@ -187,7 +187,7 @@ DEPENDENCIES
   jquery-rails
   json
   mocha (= 0.10.0)
-  mysql
+  mysql2 (= 0.3.7)
   omniauth (= 1.0.0)
   paperclip (= 2.4.5)
   rails (= 3.1.3)
