@@ -76,6 +76,10 @@
 				<%= link_to "New Discussion", new_admin_discussion_path, :class => "btn large ticketnav create" %>
 				<%= link_to "New Queue", new_admin_bucket_path, :class => "btn large ticketnav create" %>
 		</div>
+		<%= form_for :queue, :html => {:id => :switchQueue, :method => :get } do |f| %>
+			<%= f.select :id, current_account.buckets.map{ |b| [b.name, b.id] }.unshift(["All", 0]), :selected => (params[:queue] && params[:queue][:id]) %>
+		<% end %>
+		
 	<div class="span14">
 
 	<%= yield %>
