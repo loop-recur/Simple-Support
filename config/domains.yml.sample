@@ -1,0 +1,5 @@
+development: "http://localhost:3000"
+
+test: "http://simple_support.dev"
+
+production: "http://simplesupport.com"
